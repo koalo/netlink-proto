@@ -259,7 +259,7 @@ where
                     // because only the user knows how they want to
                     // handle them.
                     Error(err_msg) => {
-                        if err_msg.code.is_none() {
+                        if err_msg.code.is_none() && err_msg.extended_ack.is_empty() {
                             trace!(
                                 "not forwarding Noop/Ack/Done message to \
                                 the handle"
