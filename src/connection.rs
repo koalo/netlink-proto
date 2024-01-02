@@ -66,7 +66,8 @@ where
         )>,
         protocol: isize,
     ) -> io::Result<Self> {
-        let socket = S::new(protocol)?;
+        let mut socket = S::new(protocol)?;
+        socket.socket_mut().set_ext_ack(true)?;
         Ok(Connection {
             socket: NetlinkFramed::new(socket),
             protocol: Protocol::new(),
